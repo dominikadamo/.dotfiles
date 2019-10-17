@@ -13,7 +13,7 @@ Install
 
 Clone onto your laptop:
 
-    git clone git://github.com/ ~/.dotfiles
+    git clone git@github.com:naklar/.dotfiles.git ~/.dotfiles
 
 Install [rcm](https://github.com/thoughtbot/rcm):
 
