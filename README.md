@@ -32,3 +32,13 @@ Create install script
 ---------------------
 
     env RCRC=/dev/null rcup -B 0 -g > install.sh
+
+
+Adding new config files
+-----------------------
+
+    mkrc ~/.file
+
+or if they are undotted
+
+    mkrc -U file
