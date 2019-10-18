@@ -47,8 +47,8 @@ keys.desktopbuttons = gears.table.join(
     awful.button({ }, 5, awful.tag.viewnext),
 
     -- Side buttons - Control volume
-    awful.button({ }, 9, function () helpers.volume_control(5) end),
-    awful.button({ }, 8, function () helpers.volume_control(-5) end)
+    awful.button({ }, 9, function () helpers.volume_control(1) end),
+    awful.button({ }, 8, function () helpers.volume_control(-1) end)
 
     -- Side buttons - Minimize and restore minimized client
     -- awful.button({ }, 8, function()
@@ -85,8 +85,8 @@ keys.globalkeys = gears.table.join(
 
 -- {{ Volume Control }} --
 
-    awful.key({     }, "XF86AudioRaiseVolume", function() awful.util.spawn("amixer set Master 5%+", false) end),
-    awful.key({     }, "XF86AudioLowerVolume", function() awful.util.spawn("amixer set Master 5%-", false) end),
+    awful.key({     }, "XF86AudioRaiseVolume", function() awful.util.spawn("amixer set Master 1%+", false) end),
+    awful.key({     }, "XF86AudioLowerVolume", function() awful.util.spawn("amixer set Master 1%-", false) end),
     awful.key({     }, "XF86AudioMute", function() awful.util.spawn("amixer set Master toggle", false) end),
 
 
@@ -392,12 +392,12 @@ keys.globalkeys = gears.table.join(
         {description = "(un)mute volume", group = "volume"}),
     awful.key( { }, "XF86AudioLowerVolume",
         function()
-            helpers.volume_control(-5)
+            helpers.volume_control(-1)
         end,
         {description = "lower volume", group = "volume"}),
     awful.key( { }, "XF86AudioRaiseVolume",
         function()
-            helpers.volume_control(5)
+            helpers.volume_control(1)
         end,
         {description = "raise volume", group = "volume"}),
 
@@ -409,12 +409,12 @@ keys.globalkeys = gears.table.join(
         {description = "(un)mute volume", group = "volume"}),
     awful.key( { altkey }, "F2",
         function()
-            helpers.volume_control(-5)
+            helpers.volume_control(-1)
         end,
         {description = "lower volume", group = "volume"}),
     awful.key( { altkey }, "F3",
         function()
-            helpers.volume_control(5)
+            helpers.volume_control(1)
         end,
         {description = "raise volume", group = "volume"}),
 
