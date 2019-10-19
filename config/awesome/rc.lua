@@ -1,4 +1,4 @@
-
+local use_hidpi = false
 local theme_name = "ephemeral"
 local icon_theme_name = "drops"
 local bar_theme_name = "ephemeral"
@@ -533,7 +533,7 @@ os.execute("xbacklight -set 25 -time 1000")
 
 -- {{ I need redshift to save my eyes }} -
 run_once("redshift -l 52.51:13.31")
-run_once("sleep 1 && ~/setscale auto")
+run_once("sleep 0.1 && ~/.setscale auto")
 run_once("nm-applet")
 -- os.execute("compton -b")
 os.execute("xset -dpms && xset s off")

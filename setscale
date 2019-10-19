@@ -1,0 +1,54 @@
+#!/bin/bash
+if [ "$1" == 'auto' ]
+  then
+
+    countc=$(xrandr -q | grep ' connected' | wc -l)
+    if [ "$countc" -eq 3 ]
+      then
+        echo "Two monitors and laptop off"
+        echo ${1}
+        set -- 1
+        echo ${1}
+      elif [ "$countc" -eq 2 ]
+      then
+        set -- 1
+        echo "One monitor and laptop off"
+      else
+        set -- 2
+        echo "One laptop"
+    fi
+
+fi
+
+
+if [ "$1" != '' ]
+  then
+    factor=$1
+    xrdb=$(($1*90))
+
+    if [ "$1" == '2' ]
+      then
+        sed -i '1s/.*/local hidpi = true/' ~/.config/awesome/themes/ephemeral/theme.lua
+        echo 'SETSCALE HiDPI'
+    fi
+    if [ "$1" == '1' ]
+      then
+        sed -i '1s/.*/local hidpi = false/' ~/.config/awesome/themes/ephemeral/theme.lua
+        echo 'SETSCALE normal'
+    fi
+
+
+    gsettings set org.gnome.desktop.interface scaling-factor $factor
+    gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{ 'Gdk/WindowScalingFactor':<$factor>, 'Gdk/UnscaledDPI':<92160> }"
+
+    sed -i '1s/.*/Xft.dpi: '$xrdb'/' ~/.Xresources
+    xrdb -merge ~/.Xresources
+
+  else
+    gsettings set org.gnome.desktop.interface scaling-factor 2
+    gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{ 'Gdk/WindowScalingFactor':<2>, 'Gdk/UnscaledDPI':<92160> }"
+
+    sed -i '1s/.*/Xft.dpi: 180/' ~/.Xresources
+    xrdb -merge ~/.Xresources
+
+fi

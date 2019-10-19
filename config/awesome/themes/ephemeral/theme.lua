@@ -1,3 +1,4 @@
+local hidpi = true
 local wibox = require("wibox")
 local gears = require("gears")
 local theme_name = "ephemeral"
@@ -29,7 +30,11 @@ theme.wallpaper_lock = os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_
 
 -- Set the theme font. This is the font that will be used by default in menus, bars, titlebars etc.
 -- theme.font          = "sans 11"
-theme.font          = "monospace 11"
+if hidpi then
+    theme.font = "monospace 22"
+else
+    theme.font = "monospace 11"
+end
 
 -- Get colors from .Xresources and set fallback colors
 theme.xbackground = xrdb.background or "#1D1F28"
