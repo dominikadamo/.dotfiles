@@ -61,7 +61,7 @@ end
 -- User variables and preferences
 user = {
     -- >> Default applications <<
-    terminal = "kitty -1",
+    terminal = "st",
     floating_terminal = "kitty -1",
     browser = "firefox",
     file_manager = "nemo",
@@ -106,8 +106,8 @@ user = {
     anti_aliasing = true,
 
     -- >> Sidebar <<
-    sidebar_hide_on_mouse_leave = true,
-    sidebar_show_on_mouse_screen_edge = true,
+    sidebar_hide_on_mouse_leave = false,
+    sidebar_show_on_mouse_screen_edge = false,
 
     -- >> Lock screen <<
     -- You can set this to whatever you want or leave it empty in
@@ -151,22 +151,22 @@ require("notifications")
 -- Statusbar(s)
 require("bars."..bar_theme_name)
 -- Sidebar
-local sidebar = require("noodle.sidebar")
+--local sidebar = require("noodle.sidebar")
 
 -- Exit screen
 -- local exit_screen = require("noodle.exit_screen")
-local exit_screen = require("noodle.exit_screen_v2")
+--local exit_screen = require("noodle.exit_screen_v2")
 -- Start screen
 -- Have not used/tested it in a long time.
 -- Some things might not work properly.
-local start_screen = require("noodle.start_screen")
+--local start_screen = require("noodle.start_screen")
 
 -- Lock screen
 -- Make sure to configure your password in the 'user' section above
-local lock_screen = require("noodle.lock_screen")
+--local lock_screen = require("noodle.lock_screen")
 
 -- App drawer
-local app_drawer = require("noodle.app_drawer")
+--local app_drawer = require("noodle.app_drawer")
 
 -- Daemons
 -- Most widgets that display system info depend on evil
@@ -529,14 +529,14 @@ function run_once(cmd)
     awful.spawn.with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
-os.execute("xbacklight -set 25 -time 1000")
+-- os.execute("xbacklight -set 25 -time 1000")
 
 -- {{ I need redshift to save my eyes }} -
 run_once("redshift -l 52.51:13.31")
-run_once("sleep 0.1 && ~/.setscale auto")
-run_once("nm-applet")
+-- run_once("sleep 0.1 && ~/.setscale auto")
+-- run_once("nm-applet")
 -- os.execute("compton -b")
-os.execute("xset -dpms && xset s off")
+-- os.execute("xset -dpms && xset s off")
 -- awful.util.spawn_with_shell("xmodmap ~/.speedswapper")
 
 -- {{ Turns off the terminal bell }} --

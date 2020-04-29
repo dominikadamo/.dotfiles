@@ -292,13 +292,13 @@ function helpers.volume_control(step)
         cmd = "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ "..sign..tostring(step).."% && "..volume_get_cmd
         awful.spawn.easy_async_with_shell(cmd, function(out)
             out = out:gsub('^%s*(.-)%s*$', '%1')
-            if not sidebar.visible then
-                if volume_notif and not volume_notif.is_expired then
-                    volume_notif.message = out
-                else
-                    volume_notif = naughty.notification({ title = "Volume", message = out, timeout = 2 })
-                end
-            end
+            --if not sidebar.visible then
+            --    if volume_notif and not volume_notif.is_expired then
+            --        volume_notif.message = out
+            --    else
+            --        volume_notif = naughty.notification({ title = "Volume", message = out, timeout = 2 })
+            --    end
+            --end
 
         end)
     end

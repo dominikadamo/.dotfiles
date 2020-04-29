@@ -24,9 +24,9 @@ local screen_height = awful.screen.focused().geometry.height
 
 -- Set theme wallpaper.
 -- It won't change anything if you are using feh to set the wallpaper like I do.
-theme.wallpaper = os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_name .. "/wallpaper.jpg"
+theme.wallpaper = os.getenv("HOME") .. "/.config/wall.png"
 -- A blurred version of your wallpaper would be nice
-theme.wallpaper_lock = os.getenv("HOME") .. "/.config/awesome/themes/" .. theme_name .. "/wallpaper_lock.jpg"
+theme.wallpaper_lock = os.getenv("HOME") .. "/.config/wall.png"
 
 -- Set the theme font. This is the font that will be used by default in menus, bars, titlebars etc.
 -- theme.font          = "sans 11"
@@ -37,10 +37,10 @@ else
 end
 
 -- Get colors from .Xresources and set fallback colors
-theme.xbackground = xrdb.background or "#1D1F28"
-theme.xforeground = xrdb.foreground or "#FDFDFD"
-theme.xcolor0 = xrdb.color0 or "#282A36"
-theme.xcolor1 = xrdb.color1 or "#F37F97"
+theme.xbackground = xrdb.background or "#000000"--"#1D1F28"
+theme.xforeground = xrdb.foreground or "#ffffff"--"#FDFDFD"
+theme.xcolor0 = xrdb.color0 or "#000000"--"#282A36"
+theme.xcolor1 = xrdb.color1 or "#000000"--"#F37F97"
 theme.xcolor2 = xrdb.color2 or "#5ADECD"
 theme.xcolor3 = xrdb.color3 or "#F2A272"
 theme.xcolor4 = xrdb.color4 or "#8897F4"
@@ -98,7 +98,7 @@ theme.titlebar_position = "top"
 -- Use 4 titlebars around the window to imitate borders
 theme.titlebars_imitate_borders = false
 theme.titlebar_bg = theme.xcolor0
--- theme.titlebar_bg = theme.xbackground
+theme.titlebar_bg = theme.xbackground
 -- theme.titlebar_bg_focus = theme.xcolor12
 -- theme.titlebar_bg_normal = theme.xcolor8
 theme.titlebar_fg_focus = theme.xbackground
@@ -163,7 +163,7 @@ theme.wibar_position = "bottom"
 theme.wibar_height = dpi(32)
 theme.wibar_fg = theme.xcolor7
 theme.wibar_bg = theme.xbackground
---theme.wibar_opacity = 0.7
+theme.wibar_opacity = 0.7
 theme.wibar_border_color = theme.xcolor0
 theme.wibar_border_width = dpi(0)
 theme.wibar_border_radius = dpi(0)
@@ -196,7 +196,7 @@ theme.tasklist_plain_task_name = true
 theme.tasklist_bg_focus = theme.xcolor0
 theme.tasklist_fg_focus = theme.xforeground
 theme.tasklist_bg_normal = "#00000000"
-theme.tasklist_fg_normal = theme.xforeground.."77"
+theme.tasklist_fg_normal = theme.xforeground.."00"
 theme.tasklist_bg_minimize = "#00000000"
 theme.tasklist_fg_minimize = theme.xcolor8
 -- theme.tasklist_font_minimized = "sans italic 8"
@@ -204,6 +204,7 @@ theme.tasklist_bg_urgent = theme.xbackground
 theme.tasklist_fg_urgent = theme.xcolor3
 theme.tasklist_spacing = dpi(0)
 theme.tasklist_align = "center"
+theme.wibar_opacity = 0.8
 
 -- Sidebar
 -- (Sidebar items can be customized in sidebar.lua)
@@ -251,7 +252,7 @@ theme.taglist_text_focused  = {"","","","","","","","","
 theme.taglist_text_urgent   = {"+","+","+","+","+","+","+","+","+","+"}
 
 
-theme.taglist_text_color_empty  = { theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60" }
+theme.taglist_text_color_empty  = { theme.xforeground.."00", theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60", theme.xforeground.."60" }
 
 theme.taglist_text_color_occupied  = { theme.xcolor1, theme.xcolor2, theme.xcolor3, theme.xcolor4, theme.xcolor5, theme.xcolor6, theme.xcolor1, theme.xcolor2, theme.xcolor3, theme.xcolor4 }
 theme.taglist_text_color_focused  = { theme.xcolor1, theme.xcolor2, theme.xcolor3, theme.xcolor4, theme.xcolor5, theme.xcolor6, theme.xcolor1, theme.xcolor2, theme.xcolor3, theme.xcolor4 }
@@ -274,7 +275,7 @@ theme.taglist_disable_icon = true
 theme.taglist_spacing = dpi(0)
 theme.taglist_item_roundness = dpi(25)
 -- Generate taglist squares:
-local taglist_square_size = dpi(0)
+local taglist_square_size = dpi(5)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_focus
 )
@@ -288,7 +289,7 @@ theme.menu_height = dpi(35)
 theme.menu_width  = dpi(180)
 theme.menu_bg_normal = theme.xcolor0
 theme.menu_fg_normal= theme.xcolor7
-theme.menu_bg_focus = theme.xcolor8 .. "55"
+theme.menu_bg_focus = theme.xcolor8 .. "00"
 theme.menu_fg_focus= theme.xcolor7
 theme.menu_border_width = dpi(0)
 theme.menu_border_color = theme.xcolor0

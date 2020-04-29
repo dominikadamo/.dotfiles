@@ -17,7 +17,6 @@ shiftkey = "Shift"
 keys.desktopbuttons = gears.table.join(
     awful.button({ }, 1, function ()
         mymainmenu:hide()
-        sidebar.visible = false
         naughty.destroy_all_notifications()
         local function double_tap()
             uc = awful.client.urgent.get()
@@ -34,7 +33,7 @@ keys.desktopbuttons = gears.table.join(
     -- Right click - Show app drawer
     -- awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 3, function ()
-        app_drawer_show()
+        --app_drawer_show()
     end),
 
     -- Middle button - Toggle start scren
@@ -338,7 +337,7 @@ keys.globalkeys = gears.table.join(
     -- Run program (d for dmenu ;)
     awful.key({ superkey }, "d",
         function()
-            awful.spawn.with_shell("rofi -matching fuzzy -show combi")
+            awful.spawn.with_shell("dmenu_run")
         end,
         {description = "rofi launcher", group = "launcher"}),
 
@@ -518,7 +517,7 @@ keys.globalkeys = gears.table.join(
 
     -- App drawer
     awful.key({ superkey }, "a", function()
-        app_drawer_show()
+        --app_drawer_show()
                                  end,
         {description = "App drawer", group = "custom"}),
 

@@ -110,4 +110,4 @@ source $ZSH/oh-my-zsh.sh
 
 alias nn="sleep 0.5 && firefox 'https://www.youtube.com/watch?v=VI4ssGtfdxw'"
 alias snet="(echo 'LSOF\n______\n' && sudo lsof -i && echo 'NETSTAT LPTU\n______\n' && sudo netstat -lptu && echo 'NETSTAT TULPN\n________\n' && sudo netstat -tulpn)"
-source /etc/profile.d/vte.sh
+#source /etc/profile.d/vte.sh

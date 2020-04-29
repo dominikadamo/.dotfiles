@@ -62,24 +62,18 @@ local create_button = function (symbol, color, bg_color, hover_color, text)
     return section
 end
 
-local exit = create_button("", beautiful.xcolor6, beautiful.xcolor8.."C0",beautiful.xcolor8.."E0")
-exit:buttons(gears.table.join(
-    awful.button({ }, 1, function ()
-        exit_screen_show()
-    end)
-))
 
 local time = wibox.widget.textclock(" %H:%M ")
 time.align = "center"
 time.valign = "center"
-time.font = "sans 20"
+time.font = "sans 12"
 
-local date = wibox.widget.textclock(" %a %d %b ")
+local date = wibox.widget.textclock(" %a %d %b %Y ")
 date.align = "center"
 date.valign = "center"
 date.font = "sans 12"
 
-local volume_symbol = ""
+local volume_symbol = ""
 local volume_muted_color = beautiful.xcolor8
 local volume_unmuted_color = beautiful.xcolor5
 local volume = create_button(volume_symbol, volume_unmuted_color, beautiful.xcolor8.."30", beautiful.xcolor8.."50", "50%")
@@ -114,7 +108,7 @@ awesome.connect_signal("evil::volume", function(vol, muted)
     end
 end)
 
-local microphone_symbol = ""
+local microphone_symbol = "M"
 local microphone_muted_color = beautiful.xcolor8
 local microphone_unmuted_color = beautiful.xcolor3
 local microphone = create_button(microphone_symbol, microphone_unmuted_color, beautiful.xcolor8.."60", beautiful.xcolor8.."80")
@@ -133,17 +127,6 @@ awesome.connect_signal("evil::microphone", function(muted)
         t.markup = helpers.colorize_text(microphone_symbol, microphone_unmuted_color)
     end
 end)
-
-local music = create_button("", beautiful.xcolor4, beautiful.xcolor8.."90", beautiful.xcolor8.."B0")
-
-music:buttons(gears.table.join(
-    awful.button({ }, 1, function ()
-        helpers.run_or_raise({class = "music"}, true, user.music_client)
-    end),
-    awful.button({ }, 3, function ()
-        helpers.run_or_raise({class = "music"}, true, user.music_client)
-    end)
-))
 
 local sandwich = create_button("", beautiful.xcolor1, beautiful.xcolor8.."30", beautiful.xcolor8.."50")
 sandwich:buttons(gears.table.join(
@@ -256,15 +239,15 @@ awful.screen.connect_for_each_screen(function(s)
         filter  = awful.widget.taglist.filter.all,
         buttons = keys.taglist_buttons,
         layout = wibox.layout.flex.horizontal,
-        widget_template = {
-            widget = wibox.container.background,
-            create_callback = function(self, tag, index, _)
-                update_taglist(self, tag, index)
-            end,
-            update_callback = function(self, tag, index, _)
-                update_taglist(self, tag, index)
-            end,
-        }
+        --widget_template = {
+        --    widget = wibox.container.textbox,
+        --    create_callback = function(self, tag, index, _)
+        --        update_taglist(self, tag, index)
+        --    end,
+        --    update_callback = function(self, tag, index, _)
+        --        update_taglist(self, tag, index)
+        --    end,
+        --}
     }
 
     -- Create a tasklist for every screen
@@ -286,9 +269,9 @@ awful.screen.connect_for_each_screen(function(s)
                     align  = "center",
                     widget = wibox.widget.textbox,
                 },
-                forced_width = dpi(220),
-                left = dpi(15),
-                right = dpi(15),
+                -- forced_width = dpi(220),
+                left = dpi(4),
+                right = dpi(4),
                 -- Add margins to top and bottom in order to force the
                 -- text to be on a single line, if needed. Might need
                 -- to adjust them according to font size.
@@ -303,7 +286,7 @@ awful.screen.connect_for_each_screen(function(s)
 
 
     -- Create the wibox
-    s.mywibox = awful.wibar({screen = s, visible = true, ontop = true, type = "dock", position = "bottom"})
+    s.mywibox = awful.wibar({screen = s, visible = true, ontop = true, opacity = 0.7, type = "dock", position = "top"})
     s.mywibox.height = beautiful.wibar_height
     -- s.mywibox.width = beautiful.wibar_width
 
@@ -315,14 +298,14 @@ awful.screen.connect_for_each_screen(function(s)
     -- Wibar items
     -- Add or remove widgets here
     s.mywibox:setup {
-        sandwich,
+        {
+            widget = s.mytaglist
+        },
         s.mytasklist,
         {
             wibox.widget.systray(),
             volume,
             microphone,
-            music,
-            exit,
             date,
             time,
             layout = wibox.layout.fixed.horizontal
@@ -333,14 +316,14 @@ awful.screen.connect_for_each_screen(function(s)
 
 
     -- Create the top bar
-    s.mytopwibox = awful.wibar({screen = s, visible = true, ontop = false, type = "dock", position = "top", height = dpi(5)})
+    --s.mytopwibox = awful.wibar({screen = s, visible = true, ontop = false, type = "dock", position = "top", height = dpi(5)})
     -- Bar placement
-    awful.placement.maximize_horizontally(s.mytopwibox)
-    s.mytopwibox.bg = "#00000000"
+    --awful.placement.maximize_horizontally(s.mytopwibox)
+    --s.mytopwibox.bg = "#00000000"
 
-    s.mytopwibox:setup {
-        widget = s.mytaglist,
-    }
+    --s.mytopwibox:setup {
+    --    widget = s.mytaglist,
+    --}
 
     -- Create a system tray widget
     s.systray = wibox.widget.systray()
