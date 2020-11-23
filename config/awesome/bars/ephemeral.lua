@@ -73,6 +73,12 @@ date.align = "center"
 date.valign = "center"
 date.font = "sans 12"
 
+local battery = create_button("", beautiful.xcolor3, beautiful.xcolor3.."30", beautiful.xcolor6.."50", "50%")
+awesome.connect_signal("evil::battery", function(percent)
+    local t = battery:get_all_children()[1]:get_all_children()[3]
+    t.markup = helpers.colorize_text(percent .. "%", beautiful.xcolor3)
+end)
+
 local volume_symbol = ""
 local volume_muted_color = beautiful.xcolor8
 local volume_unmuted_color = beautiful.xcolor5
@@ -304,6 +310,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist,
         {
             wibox.widget.systray(),
+            battery,
             volume,
             microphone,
             date,
