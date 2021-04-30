@@ -61,12 +61,12 @@ end
 -- User variables and preferences
 user = {
     -- >> Default applications <<
-    terminal = "st",
+    terminal = "alacritty",
     floating_terminal = "kitty -1",
     browser = "firefox",
     file_manager = "nemo",
     tmux = "kitty -1 -e tmux new",
-    editor = "kitty -1 --class editor -e vim",
+    editor = "alacritty -1 --class editor -e vim",
     -- editor = "emacs",
 
     -- >> Search <<

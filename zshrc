@@ -76,6 +76,7 @@ ZSH_THEME="robbyrussell"
 plugins=(
   git
   react-native
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh

@@ -3,3 +3,7 @@
 	email = do1adamo@gmail.com
 [core]
 	autocrlf = input
+[pull]
+	rebase = false
+[init]
+	defaultBranch = master

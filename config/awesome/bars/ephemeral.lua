@@ -73,10 +73,28 @@ date.align = "center"
 date.valign = "center"
 date.font = "sans 12"
 
+kbdcfg = {}
+kbdcfg.layout = { { "de", "" }, { "us", "" } }
+kbdcfg.current = 1
+
+local kbmap = create_button("", beautiful.xcolor2, beautiful.xcolor2.."30", beautiful.xcolor1.."50", "de")
+kbmap:buttons(gears.table.join(
+    awful.button({ }, 1, function ()
+
+        kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+
+        local l = kbdcfg.layout[kbdcfg.current]
+
+        os.execute("setxkbmap " .. l[1])
+        local t = kbmap:get_all_children()[1]:get_all_children()[3]
+        t.markup = helpers.colorize_text(l[1], beautiful.xcolor2)
+    end)
+))
+
 local battery = create_button("", beautiful.xcolor3, beautiful.xcolor3.."30", beautiful.xcolor6.."50", "50%")
 awesome.connect_signal("evil::battery", function(percent)
-    local t = battery:get_all_children()[1]:get_all_children()[3]
-    t.markup = helpers.colorize_text(percent .. "%", beautiful.xcolor3)
+    -- local t = battery:get_all_children()[1]:get_all_children()[3]
+    -- t.markup = helpers.colorize_text(percent .. "%", beautiful.xcolor3)
 end)
 
 local volume_symbol = ""
@@ -311,6 +329,7 @@ awful.screen.connect_for_each_screen(function(s)
         {
             wibox.widget.systray(),
             battery,
+            kbmap,
             volume,
             microphone,
             date,
