@@ -28,6 +28,19 @@ function helpers.colorize_text(txt, fg)
     return "<span foreground='" .. fg .."'>" .. txt .. "</span>"
 end
 
+kbdcfg = {}
+kbdcfg.layout = { { "de", "" }, { "us", "" } }
+kbdcfg.current = 1
+function helpers.change_language()
+    kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+
+    local l = kbdcfg.layout[kbdcfg.current]
+
+    os.execute("setxkbmap " .. l[1])
+    local t = kbmap:get_all_children()[1]:get_all_children()[3]
+    t.markup = helpers.colorize_text(l[1], beautiful.xcolor2)
+end
+
 function helpers.client_menu_toggle()
     local instance = nil
 
