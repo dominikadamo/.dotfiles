@@ -387,7 +387,7 @@ client.connect_signal("property::fullscreen", no_wibar_ontop)
 function toggle_wibars()
     local s = awful.screen.focused()
     s.mywibox.visible = not s.mywibox.visible
-    s.mytopwibox.visible = not s.mytopwibox.visible
+    -- s.mytopwibox.visible = not s.mytopwibox.visible
 end
 
 function toggle_tray()

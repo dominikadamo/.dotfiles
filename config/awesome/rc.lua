@@ -359,7 +359,6 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
-                "Firefox",
                 "qutebrowser",
             },
         },
@@ -368,6 +367,9 @@ awful.rules.rules = {
             type = { "dialog" }
         },
         properties = { screen = 1, tag = awful.screen.focused().tags[1] },
+    },
+    { rule = { class = "firefox" },
+      properties = { opacity = 1, maximized = false, floating = false }
     },
 
     -- Games
